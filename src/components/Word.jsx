@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-
  function Word() {
      const[num, setNum] = useState(0);
+     const[result, setResult]=useState('');
+     
      const handleNumChange=(event)=>{
          setNum(event.target.value)
+     }
+     const handleResultChange=()=>{
+         setResult(convert(num));
      }
 
     const numToWords = (num) => {
@@ -41,6 +45,7 @@ const convert = (num1) => {
         return str1;
     }
 }
+
 else if (num1 >= 1000 && num1 < 100000) {//Thousand
     if (num1 % 1000 == 0) {
         str1 = numToWords(parseInt(num1 / 1000)) + " " + "Thousand";
@@ -81,8 +86,12 @@ return str1;
                 <label>Please Type a Number:</label>
                 <input className="number" type="text" input value={num}
                 onChange={handleNumChange}/>
-                <button className="submit-btn" onClick={numToWords}>Convert to Words</button>
+                <button type="button" className="submit-btn" onClick={handleResultChange}>Convert to Words</button>
             </form>
+            <div className="result">
+                
+                <h1>{result}</h1>
+                </div>
         </div>
     )
 }
