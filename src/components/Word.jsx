@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-export default function Word() {
+ function Word() {
+     const[num, setNum] = useState(0);
+     const handleNumChange=(event)=>{
+         setNum(event.target.value)
+     }
+
     const numToWords = (num) => {
         let units = ['', 'one', 'two', 'three', 'four',
             'five', 'six', 'seven', 'eight', 'nine',
@@ -36,11 +41,49 @@ const convert = (num1) => {
         return str1;
     }
 }
+else if (num1 >= 1000 && num1 < 100000) {//Thousand
+    if (num1 % 1000 == 0) {
+        str1 = numToWords(parseInt(num1 / 1000)) + " " + "Thousand";
+        return str1;
     }
+    else {
+        str1 = numToWords(parseInt(num1 / 1000)) + " " + "Thousand " + " " + convert(num1 % 1000);
+        return str1;
+    }
+}
+else if(num1>=100000 && num1<1000000){
+    let num_a=parseInt(num1/1000)
+    if(num1%1000==0){
+        str1=convert(num_a)+" "+ "thousand";
+    }
+    else{
+    str1=numToWords(parseInt(num_a/100))+" "+"Hundred and "+convert(num_a%100)+" "+" Thouand"+" "+convert(num1%1000);
+    }
+    return str1;
+}
+else if(num1>=1000000 && num1<10000000){
+    let num_a=parseInt(num1/1000000);
+    if(num1%1000000==0){
+        str1=convert(num_a)+" "+ "million";
+    }
+    else{
+        str1=convert(num_a)+" "+" million "+convert(num1%1000000);
+    }
+    return str1;
+}
+return str1;
+ 
+}
 
     return (
-        <div>
-            
+        <div className="Form">
+            <form>
+                <label>Please Type a Number:</label>
+                <input className="number" type="text" input value={num}
+                onChange={handleNumChange}/>
+                <button className="submit-btn" onClick={numToWords}>Convert to Words</button>
+            </form>
         </div>
     )
 }
+export default Word;
