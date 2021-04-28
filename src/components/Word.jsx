@@ -10,7 +10,6 @@ function Word() {
     const handleResultChange = () => {
         setResult(convert(num));
     }
-
     const numToWords = (num) => {
         let units = ['', 'One', 'Two', 'Three', 'Four',
             'Five', 'Six', 'Seven', 'Eight', 'Nine',
@@ -19,8 +18,8 @@ function Word() {
         let tens = ['', '', 'Twenty', 'Thirty', 'Forty',
             'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
         let str = "";
-        if (num === 0) {
-            return "Zero";
+        if (num === 0) {;
+            return 0;
         }
         else if (num < 20) {
             str = units[num];
@@ -46,7 +45,7 @@ function Word() {
                 return str1;
             }
         }
-        else if (num1 >= 1000 && num1 < 1999) {
+        else if (num1 >= 1000 && num1 <= 1999) {
             if (num1 % 100 == 0) {
                 str1 = numToWords(parseInt(num1) / 100) + " " + "Hundred";
             }
@@ -113,19 +112,20 @@ function Word() {
     }
     return (
         <div className="Form">
-            <h1>Number to Words Converter</h1>
+            <h1> Convert Number in to Word </h1>
+            <div className="input">
             <form>
-                <label>Please Type a Number:</label>
+                <label className="enter">Enter The Number:</label>
                 <input className="number" type="text" input value={num}
                     onChange={handleNumChange} />
-                <button type="button" className="submit-btn" onClick={handleResultChange}>Convert to Words</button>
+                <button type="button" className="submit-btn" onClick={handleResultChange}>Convert to Words 👆🏻</button>
             </form>
-            <div className="result">
-                <div className="box">
-                    <h3>{result}</h3>
-                </div>
+            </div>
+            <div className="result">              
+                    <h2>{result}</h2>           
             </div>
         </div>
+
     )
 }
 export default Word;
