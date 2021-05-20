@@ -5,7 +5,7 @@ import './Nav.css';
 export default function Footer() {
     return (
         <div className="footer">
-            <h2>All Rights Reserved @ Digital Natives</h2>
+            <h2>All Rights Reserved @ Wild Code School</h2>
         </div>
     )
 }
